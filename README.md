@@ -1,51 +1,118 @@
-# cv-paper-reading-skill
+# CV/AI Paper Reading Skill
 
-> A structured, top-conference-grade paper reading workflow for Computer Vision & AI researchers — packed as an installable Agent Skill.
+> **Read beyond the abstract. Reconstruct the argument.**
+>
+> 面向计算机视觉与人工智能论文的证据驱动精读、复现规划与写作拆解。
 
-A deep, rigorous, reproducible **paper-reading protocol** for anyone doing CV/AI research. It turns a single paper into: a from-zero full reading → an experiment plan → a writing-teardown → a reusable writing template.
+[English](README_EN.md) · [安装](#安装) · [示例提示词](#示例提示词) · [为什么做这个-skill](#为什么做这个-skill)
 
-## 🎯 Positioning
+`paper-reading` 是一个可安装的 Agent Skill。它不只总结论文“说了什么”，而是把论文还原成一套可检查的论证系统：
 
-- **Target domain**: Computer Vision & AI — object detection, multi-modal learning, backbones (e.g. Mamba/Transformer), low-altitude UAV, and more.
-- **Audience**: graduate students and researchers who read papers to reproduce, review, and write their own.
-- **Philosophy**: evidence over marketing — judge what a paper *actually* proved, never just restate its claims.
-- **Adaptable**: the workflow is general; an optional section adapts insights to your own research direction (multi-modal / RGB-T as one example).
+**问题定义 → 核心假设 → 方法/数据/系统设计 → 关键证据 → 证据边界 → 复现与写作启发**
 
-## 📦 What it contains
+它面向 CV 与更广泛的 AI 研究，支持方法模型、数据集/基准、理论算法、系统效率、综述观点，以及基础模型、生成式 AI 和智能体论文。它不绑定任何私人研究方向。
 
+## 为什么做这个 Skill
+
+很多论文阅读工具停在三件事：改写摘要、逐节概括、罗列优缺点。对 CV/AI 研究者来说，这还不够。真正困难的是：
+
+- 看懂结构图、公式、训练目标和数据流如何共同构成机制；
+- 判断提升来自新思想，还是更大模型、更多数据、更多算力或更强调参；
+- 核对训练预算、数据划分、预训练、评测协议和效率测量是否公平；
+- 把贡献主张映射到具体图、表、消融、证明或系统测量；
+- 从论文反推出可执行的复现计划，以及作者如何组织一篇“能被相信”的论文。
+
+这个 Skill 把这些隐性的研究判断固化为一个可复用工作流。
+
+## 为什么不直接套用通用或 Nature-style 论文 Skill
+
+这不是质量高低之争，而是**领域重心不同**。以 Nature Paper Card 一类工具为例，它们在来源定位、证据可追溯和跨科学领域规范化方面很强；但固定卡片结构与面向广义科学研究的论文分类，不一定是 CV/AI 论文最自然的阅读入口。
+
+CV/AI 会议论文经常把关键贡献压缩在模型结构、算法流程、训练配方、基准协议、消融和计算预算中。若直接套用通用科学模板，容易出现几类错位：
+
+| 常见错位 | 对 CV/AI 阅读的影响 | 本 Skill 的处理 |
+|---|---|---|
+| 所有论文使用同一章节模板 | 对数据集、理论、系统或综述论文强行找“模块创新” | 先识别论文类型，再调整分析单位 |
+| 逐公式翻译，但不连接实现 | 知道符号含义，却不知道机制怎样运行 | 连接公式、数据/状态变化、训练与推理 |
+| 只记录 SOTA 数值 | 忽略预算、预训练、划分和额外数据 | 先检查可比性，再判断提升意义 |
+| 把作者解释当成已证实机制 | 最终指标提升被误写成因果证明 | 使用主张—证据矩阵审查闭环 |
+| 论文、源码和二手解读混在一起 | 无法知道结论来自哪里 | 分离论文事实、作者主张、推断、批判和外部证据 |
+
+因此，这个项目不是替代所有论文工具，而是提供一个更贴近 CV/AI 研究实践的阅读层。
+
+## 核心能力
+
+- **按请求控制深度**：快速理解、完整精读、复现计划、写作拆解和源码核对互不混淆。
+- **按论文类型自适应**：方法、数据、理论、系统、综述和基础模型使用不同的审查重点。
+- **五类证据分层**：论文事实 / 作者主张 / 分析推断 / 批判性判断 / 外部或源码证据。
+- **主张—证据闭环**：每项核心贡献回到具体公式、图表、实验、证明或测量。
+- **复现导向**：将论文转化为最小复现、公平基线、核心消融、机制验证和停止条件。
+- **写作反向工程**：分析章节功能、发布逻辑、图表角色和真实科研工作量。
+- **领域中立**：仅在用户给出目标课题时增加迁移分析，不擅自导向某个研究方向。
+
+## 支持的使用模式
+
+| 模式 | 适合的问题 | 典型输出 |
+|---|---|---|
+| 快速理解 | “这篇论文讲了什么？” | 核心思想、证据、局限、最终判断 |
+| 完整精读 | “从零讲清楚这篇论文” | 连续通俗解释 + 方法/图表/实验/边界 |
+| 复现规划 | “我想复现并做消融” | 最小复现、变量、对照、指标、风险 |
+| 写作拆解 | “分析这篇论文怎么写出来的” | 论证链、章节功能、证据闭环、写作蓝图 |
+| 源码核对 | “结合 GitHub 判断论文实现” | 论文与代码证据分离的静态或运行核对 |
+
+## 示例提示词
+
+```text
+快速告诉我这篇论文解决了什么问题，核心机制是什么，证据够不够。
+
+从零完整精读这篇 CVPR 论文，重点讲结构图、损失函数和消融实验。
+
+把这篇数据集论文的采集、标注、划分、偏差和评测协议审查清楚。
+
+我准备复现这篇论文。请给出最小复现、关键消融和机制验证计划。
+
+不要再解释方法本身，单独拆解作者的引言、论证链和实验叙事。
+
+结合论文和官方代码核对实现差异，明确区分论文事实与源码证据。
 ```
+
+## 仓库结构
+
+```text
 cv-paper-reading-skill/
-├── paper-reading/            # the installable Skill (folder)
-│   ├── SKILL.md              # workflow decision tree + core principles + output contract
+├── paper-reading/
+│   ├── SKILL.md
 │   └── references/
-│       ├── part1-deep-reading.md      # 13-aspect full paper reading (method, formulas, figures, experiments, ablations, evidence boundary)
-│       └── part2-writing-analysis.md  # narrative logic, section-by-section teardown, evidence chain, writing checklist
-└── README.md
+│       ├── part1-deep-reading.md
+│       └── part2-writing-analysis.md
+├── README.md
+├── README_EN.md
+└── LICENSE
 ```
 
-### Part 1 — From-zero full reading (13 aspects)
-Positioning · Motivation · Theory (every formula explained) · Architecture & data flow (tensor shapes) · Core mechanism · Figures & tables · Experiments (FLOPs/params/fairness) · Ablations · Evidence boundary · Limitations & failure cases · **Ideas for your own research** (adaptable to any direction) · Experiment objectification (reproducible plan) · Final research judgment (with a ready-to-use group-meeting summary).
+`SKILL.md` 只保留路由、证据规则和输出契约；完整精读与写作拆解分别按需加载，避免每次调用都塞入无关上下文。
 
-### Part 2 — Writing & logic teardown (9 aspects)
-Full causal chain · Chapter-by-chapter structure · Argumentation role of each section · Figure/table/equation function · Evidence-chain closure · Reverse-infer the actual research workload · Writing strengths & weaknesses · Transferable paper-writing template · Complete self-check checklist.
+## 安装
 
-## 🚀 How to use
+将 [`paper-reading/`](paper-reading/) 整个目录复制到支持 Agent Skills 的客户端技能目录中，然后使用自然语言调用。不同客户端的技能目录与加载方式可能不同，请以对应产品文档为准。
 
-Install the `paper-reading/` folder as a Skill in your agent environment, then say e.g.:
+本项目采用纯 Markdown 结构，没有运行依赖，也不会自动访问、修改或上传你的论文和代码。
 
-> "精读这篇论文" / "Deep-read this paper" / "帮我做组会汇报" / "分析这篇论文怎么写出来的"
+## 设计原则
 
-It will output the full reading **first in chat**, then generate two Markdown files:
-- `论文名_完整精读与实验假设.md`
-- `论文名_论文逻辑框架与科研写作分析.md`
+1. 先讲明白，再拆细节。
+2. 证据强度决定结论强度。
+3. 不把作者主张当成实验事实。
+4. 不把最终指标提升当成机制证明。
+5. 不把个人课题写进公共工具的默认行为。
+6. 不为填满模板而虚构“不适用”的分析。
 
-## ✨ Why it stands out
+## 作者
 
-- **Fixed contract**: complete output, never trimmed, no mid-way "shall I continue?" interruptions.
-- **Three-layer rigor**: paper's own claims / what follows from the paper / my critical judgment — clearly separated.
-- **Repro-friendly**: every paper is turned into a concrete, ablatable experiment plan.
-- **Research-direction aware**: connects reading insights to your own research (e.g. multi-modal detection, modal degradation, small objects, Mamba) with testable hypotheses.
+Created and maintained by [Ambition7star](https://github.com/Ambition7star).
 
-## 📌 License
+这个项目来自真实科研阅读中的反复痛点：论文可以被“总结”，但只有当问题、机制、证据与边界被重新连接起来，它才真正能被理解、复现和用于下一项研究。欢迎通过 Issue 分享失败案例、论文类型适配建议或工作流改进。
 
-MIT
+## License
+
+[MIT](LICENSE)
