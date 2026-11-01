@@ -2,13 +2,14 @@
 
 > A structured, top-conference-grade paper reading workflow for Computer Vision & AI researchers — packed as an installable Agent Skill.
 
-A deep, rigorous, reproducible **paper-reading protocol** for CV/AI research, distilled from practical experience on RGB-T / multi-modal object detection, Mamba architectures, and low-altitude UAV scenes. It turns a single paper into: a from-zero full reading → an experiment plan → a writing-teardown → a reusable writing template.
+A deep, rigorous, reproducible **paper-reading protocol** for anyone doing CV/AI research. It turns a single paper into: a from-zero full reading → an experiment plan → a writing-teardown → a reusable writing template.
 
 ## 🎯 Positioning
 
-- **Target domain**: Computer Vision & AI (object detection, multi-modal fusion, RGB-T/RGBT, Mamba, low-altitude UAV).
+- **Target domain**: Computer Vision & AI — object detection, multi-modal learning, backbones (e.g. Mamba/Transformer), low-altitude UAV, and more.
 - **Audience**: graduate students and researchers who read papers to reproduce, review, and write their own.
 - **Philosophy**: evidence over marketing — judge what a paper *actually* proved, never just restate its claims.
+- **Adaptable**: the workflow is general; an optional section adapts insights to your own research direction (multi-modal / RGB-T as one example).
 
 ## 📦 What it contains
 
@@ -23,7 +24,7 @@ cv-paper-reading-skill/
 ```
 
 ### Part 1 — From-zero full reading (13 aspects)
-Positioning · Motivation · Theory (every formula explained) · Architecture & data flow (tensor shapes) · Core mechanism · Figures & tables · Experiments (FLOPs/params/fairness) · Ablations · Evidence boundary · Limitations & failure cases · **Ideas for your own RGB-T research** · Experiment objectification (reproducible plan) · Final research judgment (with a ready-to-use group-meeting summary).
+Positioning · Motivation · Theory (every formula explained) · Architecture & data flow (tensor shapes) · Core mechanism · Figures & tables · Experiments (FLOPs/params/fairness) · Ablations · Evidence boundary · Limitations & failure cases · **Ideas for your own research** (adaptable to any direction) · Experiment objectification (reproducible plan) · Final research judgment (with a ready-to-use group-meeting summary).
 
 ### Part 2 — Writing & logic teardown (9 aspects)
 Full causal chain · Chapter-by-chapter structure · Argumentation role of each section · Figure/table/equation function · Evidence-chain closure · Reverse-infer the actual research workload · Writing strengths & weaknesses · Transferable paper-writing template · Complete self-check checklist.
@@ -43,7 +44,7 @@ It will output the full reading **first in chat**, then generate two Markdown fi
 - **Fixed contract**: complete output, never trimmed, no mid-way "shall I continue?" interruptions.
 - **Three-layer rigor**: paper's own claims / what follows from the paper / my critical judgment — clearly separated.
 - **Repro-friendly**: every paper is turned into a concrete, ablatable experiment plan.
-- **RGB-T oriented**: explicitly connects to RGB-T/RGBT detection, modal degradation, misalignment, small objects, Mamba — with testable research hypotheses.
+- **Research-direction aware**: connects reading insights to your own research (e.g. multi-modal detection, modal degradation, small objects, Mamba) with testable hypotheses.
 
 ## 📌 License
 
